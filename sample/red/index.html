@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="../css/yui-css-reset.css" />
+	<style type="text/css">
+		html, body {
+			height: 100%;
+			margin: 0px;
+			padding: 0px;
+		}
+		.is-fullsize {
+			width: 100%;
+			height: 100%;
+			min-height: 100%;
+		}
+		.is-hide {
+			display: none;
+		}
+		.is-blue {
+			background-color: #96a9e0;
+		}
+		.is-green {
+			background-color: #96e0a9;
+		}
+		.is-red {
+			background-color: #e09696;
+		}
+
+		.hero {
+			padding: 50px 0 0 50px;
+			font-size: 80px;
+			font-weight: bold;
+			color: #222;
+		}
+		.next {
+			padding: 0 0 0 100px;
+			font-size: 20px;
+		}
+	</style>
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="../../recorder.js"></script>
+	<script src="../js/app.js"></script>
+</head>
+<body>
+	<div id="blue" class="is-fullsize is-blue is-hide">
+		<p class="hero">Blue</p>
+		<p class="next"><a id="toGreen" href="#green">next is green</a></p>
+	</div>
+	<div id="green" class="is-fullsize is-green is-hide">
+		<p class="hero">Green</p>
+		<p class="next"><a id="toRed" href="#red">next is red</a></p>
+	</div>
+	<div id="red" class="is-fullsize is-red">
+		<p class="hero">Red</p>
+		<p class="next"><a id="toBlue" href="#blue">next is blue</a></p>
+	</div>
+</body>
+</html>

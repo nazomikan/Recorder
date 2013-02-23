@@ -7,25 +7,21 @@
       redPath = basePath + 'red/';
 
   function run() {
-    recorder.replaceState(basePath);
     bindAllListeners();
   }
 
   function bindAllListeners() {
     $('#toGreen').bind('click', function (evt) {
       evt.preventDefault();
-      toGreen();
-      recorder.pushState(greenPath);
+      recorder.pushState(greenPath, toGreen);
     });
     $('#toRed').bind('click', function (evt) {
       evt.preventDefault();
-      toRed();
-      recorder.pushState(redPath);
+      recorder.pushState(redPath, toRed);
     });
     $('#toBlue').bind('click', function (evt) {
       evt.preventDefault();
-      toBlue();
-      recorder.pushState(bluePath);
+      recorder.pushState(bluePath, toBlue);
     });
 
     recorder.addListener(basePath, toBlue);

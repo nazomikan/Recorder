@@ -25,30 +25,38 @@
 
   Recorder.prototype.addListener = function (path, handler) {
     this.handlers[path] = handler;
+
     return this;
   };
 
-  Recorder.prototype.replaceState = function (path) {
-    history.replaceState(path, null, path);
-    return this;
-  };
+  Recorder.prototype.pushState = function (path, supportHandler, unsupportHandler) {
+    if (isSupport()) {
+      supportHandler();
+      history.pushState(path, null, path);
+    } else {
+      unsupportHandler ? unsupportHandler() : (location.href = path);
+    }
 
-  Recorder.prototype.pushState = function (path) {
-    history.pushState(path, null, path);
     return this;
   };
 
   local.observeHistoryState = function (handlers) {
+    if (isSupport()) {
+      this.observePopState(handlers);
+    }
+  };
+
+  local.observePopState = function (handlers) {
     window.addEventListener('popstate', function (evt) {
       var state = evt.state
-        , handler = handlers[state]
+        , handler = (state ? handlers[state] : handlers[location.pathname])
         ;
 
       if (handler) {
         handler();
       }
     });
-  };
+  }
 
   function createObject(obj) {
     if (Object.create) {
@@ -61,6 +69,10 @@
     function F() {}
     F.prototype = obj;
     return new F();
+  }
+
+  function isSupport() {
+    return !(window.history && window.history.pushState);
   }
 
   return Recorder;
