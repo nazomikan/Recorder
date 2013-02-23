@@ -72,7 +72,7 @@
   }
 
   function isSupport() {
-    return !(window.history && window.history.pushState);
+    return !!(window.history && window.history.pushState);
   }
 
   return Recorder;
